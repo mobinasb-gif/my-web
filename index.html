@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Personal portfolio of Mobina Sabaghi — Robotics Engineer, Python Developer, AI and Web enthusiast.">
+  <title>Mobina Sabaghi | Robotics Engineer & Developer</title>
+  <style>
+    :root{
+      --bg:#080b14;
+      --surface:#101522;
+      --surface-2:#151b2b;
+      --text:#f5f7ff;
+      --muted:#9ca7bd;
+      --accent:#7c5cff;
+      --accent-2:#24d6b5;
+      --border:rgba(255,255,255,.09);
+      --shadow:0 24px 70px rgba(0,0,0,.35);
+      --radius:24px;
+      --max:1120px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:
+        radial-gradient(circle at 15% 10%,rgba(124,92,255,.18),transparent 28%),
+        radial-gradient(circle at 85% 30%,rgba(36,214,181,.10),transparent 25%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.7;
+      overflow-x:hidden;
+    }
+    a{color:inherit;text-decoration:none}
+    .container{width:min(calc(100% - 40px),var(--max));margin:auto}
+    .nav{
+      position:fixed;top:0;left:0;right:0;z-index:20;
+      background:rgba(8,11,20,.72);backdrop-filter:blur(18px);
+      border-bottom:1px solid var(--border)
+    }
+    .nav-inner{height:74px;display:flex;align-items:center;justify-content:space-between}
+    .logo{font-weight:800;font-size:1.2rem;letter-spacing:-.03em}
+    .logo span{color:var(--accent)}
+    .nav-links{display:flex;gap:26px;color:var(--muted);font-size:.92rem}
+    .nav-links a{transition:.25s}
+    .nav-links a:hover{color:var(--text)}
+    .menu{display:none;background:none;border:0;color:var(--text);font-size:1.5rem;cursor:pointer}
+    .hero{min-height:100vh;display:grid;place-items:center;padding:130px 0 80px}
+    .hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:70px;align-items:center}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:9px;padding:7px 12px;
+      border:1px solid var(--border);border-radius:999px;background:rgba(255,255,255,.035);
+      color:var(--accent-2);font-size:.82rem;margin-bottom:22px
+    }
+    .dot{width:7px;height:7px;border-radius:50%;background:var(--accent-2);box-shadow:0 0 15px var(--accent-2)}
+    h1{font-size:clamp(3rem,7vw,6.2rem);line-height:.98;letter-spacing:-.065em;max-width:800px}
+    h1 .gradient{
+      background:linear-gradient(110deg,var(--accent),#b78cff 45%,var(--accent-2));
+      -webkit-background-clip:text;background-clip:text;color:transparent
+    }
+    .hero p{max-width:680px;color:var(--muted);font-size:1.08rem;margin:26px 0 32px}
+    .buttons{display:flex;gap:13px;flex-wrap:wrap}
+    .btn{padding:12px 19px;border-radius:13px;border:1px solid var(--border);font-weight:700;transition:.25s}
+    .btn-primary{background:var(--text);color:var(--bg)}
+    .btn-secondary{background:rgba(255,255,255,.04)}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,0,0,.2)}
+    .hero-card{
+      min-height:390px;border:1px solid var(--border);border-radius:32px;
+      background:linear-gradient(145deg,rgba(124,92,255,.13),rgba(255,255,255,.025));
+      box-shadow:var(--shadow);display:flex;align-items:flex-end;padding:30px;position:relative;overflow:hidden
+    }
+    .hero-card:before,.hero-card:after{content:"";position:absolute;border-radius:50%;filter:blur(1px)}
+    .hero-card:before{width:230px;height:230px;background:rgba(124,92,255,.23);top:-80px;right:-50px}
+    .hero-card:after{width:180px;height:180px;background:rgba(36,214,181,.14);bottom:-70px;left:-60px}
+    .code-window{position:relative;z-index:1;width:100%;background:rgba(6,9,16,.72);border:1px solid var(--border);border-radius:20px;padding:20px;font:14px/1.9 ui-monospace,SFMono-Regular,Menlo,monospace;color:#d9e1f5}
+    .code-key{color:#b78cff}.code-string{color:#7ee7d0}.code-comment{color:#6f7890}
+    section{padding:100px 0}
+    .section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:42px}
+    .kicker{color:var(--accent-2);font-size:.8rem;text-transform:uppercase;letter-spacing:.18em;font-weight:800}
+    h2{font-size:clamp(2rem,4vw,3.3rem);letter-spacing:-.045em;line-height:1.1;margin-top:8px}
+    .section-head p{max-width:500px;color:var(--muted)}
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px}
+    .card p{color:var(--muted)}
+    .facts{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .fact{background:var(--surface-2);border:1px solid var(--border);border-radius:18px;padding:20px}
+    .fact strong{display:block;font-size:1.4rem;margin-bottom:3px}.fact span{color:var(--muted);font-size:.9rem}
+    .skills{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+    .skill{
+      padding:20px;border-radius:18px;background:var(--surface);border:1px solid var(--border);
+      display:flex;justify-content:space-between;gap:12px;align-items:center;transition:.25s
+    }
+    .skill:hover{transform:translateY(-4px);border-color:rgba(124,92,255,.45)}
+    .skill small{color:var(--muted)}
+    .skill-level{display:flex;gap:3px}.skill-level i{display:block;width:5px;height:16px;border-radius:3px;background:#30384d}.skill-level i.on{background:var(--accent)}
+    .contact{
+      border:1px solid var(--border);border-radius:32px;padding:45px;
+      background:linear-gradient(135deg,rgba(124,92,255,.14),rgba(36,214,181,.05))
+    }
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:35px;align-items:center}
+    .contact-text p{color:var(--muted);max-width:560px;margin-top:16px}
+    .contact-links{display:grid;gap:12px}
+    .contact-link{
+      display:flex;align-items:center;justify-content:space-between;padding:17px 19px;
+      background:rgba(8,11,20,.52);border:1px solid var(--border);border-radius:15px;transition:.25s
+    }
+    .contact-link:hover{transform:translateX(5px);border-color:rgba(124,92,255,.5)}
+    .contact-link span:last-child{color:var(--muted);font-size:.85rem}
+    footer{padding:35px 0 50px;color:#727d93;font-size:.85rem;border-top:1px solid var(--border)}
+    .footer-inner{display:flex;justify-content:space-between;gap:20px}
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s,transform .7s}.reveal.visible{opacity:1;transform:none}
+    @media(max-width:800px){
+      .nav-links{display:none;position:absolute;top:74px;left:20px;right:20px;padding:15px;flex-direction:column;gap:5px;background:rgba(16,21,34,.97);border:1px solid var(--border);border-radius:16px}
+      .nav-links.open{display:flex}.nav-links a{padding:10px}
+      .menu{display:block}
+      .hero-grid,.about-grid,.contact-grid{grid-template-columns:1fr}
+      .hero-card{min-height:300px}.skills{grid-template-columns:1fr 1fr}
+      .section-head{display:block}.section-head p{margin-top:15px}
+    }
+    @media(max-width:520px){
+      .container{width:min(calc(100% - 28px),var(--max))}
+      section{padding:75px 0}.hero{padding-top:115px}
+      .skills,.facts{grid-template-columns:1fr}.contact{padding:28px 20px}
+      .footer-inner{flex-direction:column}
+      h1{font-size:clamp(2.8rem,15vw,4.5rem)}
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="logo" href="#home">Mobina<span>.</span></a>
+      <button class="menu" aria-label="Open menu" aria-expanded="false">☰</button>
+      <div class="nav-links">
+        <a href="#about">About</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="home">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <div class="eyebrow"><span class="dot"></span> Robotics Engineer · Developer · AI Enthusiast</div>
+          <h1>Building ideas with <span class="gradient">logic & creativity.</span></h1>
+          <p>
+            I'm Mobina Sabaghi, a Robotics Engineering graduate with an analytical mindset,
+            curiosity for technology, and a strong interest in Python, Artificial Intelligence,
+            robotics, and modern web development.
+          </p>
+          <div class="buttons">
+            <a class="btn btn-primary" href="#contact">Let's connect ↗</a>
+            <a class="btn btn-secondary" href="#skills">Explore skills</a>
+          </div>
+        </div>
+        <div class="hero-card reveal">
+          <div class="code-window">
+            <div><span class="code-comment">// curious mind, practical builder</span></div>
+            <div><span class="code-key">const</span> mobina = {</div>
+            <div>&nbsp;&nbsp;role: <span class="code-string">"Robotics Engineer"</span>,</div>
+            <div>&nbsp;&nbsp;focus: [<span class="code-string">"Python"</span>, <span class="code-string">"AI"</span>, <span class="code-string">"Web"</span>],</div>
+            <div>&nbsp;&nbsp;mindset: <span class="code-string">"Analytical & Curious"</span>,</div>
+            <div>&nbsp;&nbsp;personality: <span class="code-string">"INTP"</span></div>
+            <div>};</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container reveal">
+        <div class="section-head">
+          <div><div class="kicker">01 — About</div><h2>A technical mind with a curious side.</h2></div>
+          <p>I enjoy solving problems, exploring new technologies, exchanging ideas, and continuously improving my skills.</p>
+        </div>
+        <div class="about-grid">
+          <div class="card">
+            <p>
+              I have a Bachelor's degree in Robotics Engineering from Islamic Azad University,
+              Tehran Central Branch. My approach is logical, creative, and detail-oriented.
+              I can work independently while also enjoying collaborative, idea-driven teams.
+            </p>
+          </div>
+          <div class="facts">
+            <div class="fact"><strong>Robotics</strong><span>Engineering background</span></div>
+            <div class="fact"><strong>INTP</strong><span>Analytical personality</span></div>
+            <div class="fact"><strong>Python</strong><span>Programming focus</span></div>
+            <div class="fact"><strong>AI + Web</strong><span>Growing technical interests</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container reveal">
+        <div class="section-head">
+          <div><div class="kicker">02 — Skills</div><h2>Things I work with.</h2></div>
+          <p>Selected technical and creative skills from my professional profile.</p>
+        </div>
+        <div class="skills">
+          <div class="skill"><div><b>Python</b><br><small>Programming</small></div><div class="skill-level">★★★★★</div></div>
+          <div class="skill"><div><b>Artificial Intelligence</b><br><small>AI</small></div><div class="skill-level">★★★★☆</div></div>
+          <div class="skill"><div><b>Robotics</b><br><small>Engineering</small></div><div class="skill-level">★★★★☆</div></div>
+          <div class="skill"><div><b>HTML</b><br><small>Web</small></div><div class="skill-level">★★★★☆</div></div>
+          <div class="skill"><div><b>JavaScript</b><br><small>Web</small></div><div class="skill-level">★★★☆☆</div></div>
+          <div class="skill"><div><b>Django</b><br><small>Python Web</small></div><div class="skill-level">★☆☆☆☆</div></div>
+          <div class="skill"><div><b>OpenCV</b><br><small>Computer Vision</small></div><div class="skill-level">★★★☆☆</div></div>
+          <div class="skill"><div><b>YOLO</b><br><small>Computer Vision</small></div><div class="skill-level">★☆☆☆☆</div></div>
+          <div class="skill"><div><b>Neural Networks</b><br><small>AI</small></div><div class="skill-level">★★★☆☆</div></div>
+          <div class="skill"><div><b>GitHub</b><br><small>Development</small></div><div class="skill-level">★★★☆☆</div></div>
+          <div class="skill"><div><b>Figma</b><br><small>Design</small></div><div class="skill-level">★★★☆☆</div></div>
+          <div class="skill"><div><b>Photoshop</b><br><small>Creative</small></div><div class="skill-level">★★★☆☆</div></div>
+          <div class="skill"><div><b>Arduino</b><br><small>Embedded</small></div><div class="skill-level">★★★☆☆</div></div>
+          <div class="skill"><div><b>Webots</b><br><small>Robotics Simulation</small></div><div class="skill-level">★★★☆☆</div></div>
+          <div class="skill"><div><b>English</b><br><small>Language</small></div><div class="skill-level">★★★★☆</div></div>
+          <div class="skill"><div><b>Robotics Teaching</b><br><small>Education</small></div><div class="skill-level">★★★★☆</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container reveal">
+        <div class="contact">
+          <div class="contact-grid">
+            <div class="contact-text">
+              <div class="kicker">03 — Contact</div>
+              <h2>Let's build something interesting.</h2>
+              <p>
+                I'm open to professional opportunities, collaborations, and conversations around
+                programming, AI, robotics, and web development.
+              </p>
+            </div>
+            <div class="contact-links">
+              <!-- Replace the placeholder links below with your real profiles. -->
+              <a class="contact-link" href="https://www.linkedin.com/in/YOUR-LINKEDIN/" target="_blank" rel="noopener">
+                <strong>LinkedIn ↗</strong><span>Professional profile</span>
+              </a>
+              <a class="contact-link" href="https://github.com/YOUR-GITHUB" target="_blank" rel="noopener">
+                <strong>GitHub ↗</strong><span>Projects & code</span>
+              </a>
+              <a class="contact-link" href="mailto:YOUR-EMAIL@example.com">
+                <strong>Email ↗</strong><span>Direct contact</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© 2026 Mobina Sabaghi. All rights reserved.</span>
+      <span>Designed & built by Mobina.</span>
+    </div>
+  </footer>
+
+  <script>
+    const menu = document.querySelector('.menu');
+    const links = document.querySelector('.nav-links');
+
+    menu.addEventListener('click', () => {
+      const open = links.classList.toggle('open');
+      menu.setAttribute('aria-expanded', open);
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => links.classList.remove('open'));
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
